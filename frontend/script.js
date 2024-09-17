@@ -22,7 +22,7 @@ function convertSecondsToMinutes(seconds) {
 }
 async function getMusics(folder){
     currentFolder = folder;
-    let a  = await fetch(`/YTMusic/${folder}/`)
+    let a  = await fetch(`/ytMusic/${folder}/`)
     let response = await a.text()
     // console.log(response)
     let div = document.createElement("div")
@@ -65,7 +65,7 @@ const playMUsic = (track,pause = false)=>{
     document.querySelector(".song-time").innerHTML = "00:00/00:00"
 }
 async function displayAlbums(){
-    let a  = await fetch(`/YTMusic/Musics/`)
+    let a  = await fetch(`/ytMusic/Musics/`)
     let response = await a.text() 
     let div = document.createElement("div")
     div.innerHTML = response; 
@@ -77,7 +77,7 @@ async function displayAlbums(){
         if(e.href.includes("/Musics")){
             let folder =(e.href.split("/").slice(-2)[0])
             //Retrieving the metadata of the folder
-            let a  = await fetch(`/YTMusic/Musics/${folder}/info.json`)
+            let a  = await fetch(`/ytMusic/Musics/${folder}/info.json`)
             let response = await a.json()
             // console.log(response)
             cardContainer.innerHTML = `${cardContainer.innerHTML}<div class="card" data-folder="${folder}">
@@ -90,7 +90,7 @@ async function displayAlbums(){
                                     fill="#FFFFFF" />
                             </svg>
                         </div>
-                        <img src="/YTMusic/Musics/${folder}/cover.jpg"
+                        <img src="/ytMusic/Musics/${folder}/cover.jpg"
                             alt="Banner">
                         <h3>${response.title}</h3>
                         <p class="Playlist-paragraph">${response.Description}</p>
